@@ -40,3 +40,36 @@ creacion controller de errores
 > src/main/java/com/riwi/encuestas/infrastructure/abstract_services/CrudService.java
 
 creacion crud generico
+
+8. 
+
+CREACION DE ENTIDADES EN RAMAS 
+
+9. 
+
+> src/main/java/com/riwi/encuestas/domain/entities/User.java
+
+creacion de la entidad User sin su relacion para enlazar al final
+
+10.
+
+> src/main/java/com/riwi/encuestas/api/dto/UserResponse.java
+
+creacion Response de User 
+
+11.
+
+> src/main/java/com/riwi/encuestas/api/dto/request/UserRequest.java
+
+creacion Request User 
+
+12.
+
+creacion del enum
+
+13.
+
+> src/main/java/com/riwi/encuestas/domain/repositories/UserRepository.java
+
+creacion repositorio User
+

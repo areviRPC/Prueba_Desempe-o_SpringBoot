@@ -2,17 +2,20 @@ package com.riwi.encuestas.infrastructure.abstract_services;
 
 import org.springframework.data.domain.Page;
 
+import com.riwi.encuestas.util.enums.SortType;
+
 // 7
-public interface CrudService <RQ,RS,ID> {
+public interface CrudService <REQUEST,RESPONSE,TYPE> {
 
-    public RS create(RQ request);
+    Page<RESPONSE> getAll(int page, int size, SortType sortType);
 
-    public RS get(ID id);
+    RESPONSE getById(TYPE id);
 
-    public RS update(RQ request, ID id);
+    RESPONSE create(REQUEST request);
 
-    public void delete(ID id);
+    RESPONSE update(REQUEST request, TYPE id);
 
-    public Page<RS> getAll(int page, int size);
+    void delete(TYPE id);
+
     
 }
