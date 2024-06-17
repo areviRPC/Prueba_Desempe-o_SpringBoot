@@ -1,0 +1,42 @@
+
+1. 
+> encuestas/pom.xml
+ Dependencia swagger añadida
+
+2.
+> src/main/java/com/riwi/encuestas/config/OpenApiConfig.java
+
+configuracion de swagger
+
+3.
+>src/main/java/com/riwi/encuestas/util/exceptions/IdNotFoundException.java
+
+creacion IdNotFoundException
+
+4.
+> src/main/resources/application.properties
+
+configuracion y creacion de la base de datos 
+
+5.
+> src/main/java/com/riwi/encuestas/api/dto/errors/BaseErrorResponse.java
+
+creacion archivo BaseErrorResponse para el manejo general de errores 
+
+5.1
+
+creacion archivo ErrorResponse en singular 
+
+5.2
+
+creacion archivo ErrorResponse en plural 
+
+6.
+> src/main/java/com/riwi/encuestas/api/error_handler/BadRequestController.java
+
+creacion controller de errores
+
+7.
+> src/main/java/com/riwi/encuestas/infrastructure/abstract_services/CrudService.java
+
+creacion crud generico
