@@ -6,19 +6,21 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-// 16
+//17
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class QuestionResponse {
-    @Schema(description = "Id de la pregunta") 
-    private int idQuestion;
-    @Schema(description = "texto de la pregunta") 
+public class OptionsQuestionResponse {
+    @Schema(description = "Id de la opcion") 
+    private int idOptionQuestion;
+
+    @Schema(description = "opcion de la pregunta") 
     private String text;
-    @Schema(description = "Tipo de pregunta") 
-    private String type;
-    @Schema(description = "Estado de la pregunta") 
+
+    @Schema(description = "estado") 
     private boolean active;
+
+    @Schema(description = "Id de la pregunta relacionada") 
+    private int idQuestion;
 }
