@@ -71,5 +71,22 @@ creacion del enum
 
 > src/main/java/com/riwi/encuestas/domain/repositories/UserRepository.java
 
+se crea el repositorio de usuario 
+
+14. 
+
+> src/main/java/com/riwi/encuestas/infrastructure/abstract_services/IUserService.java
+
+se crea el servicio asbtracto del usuario 
+
 creacion repositorio User
 
+                 MERGE CON LA RAMA USER 
+
+> Rama suvey 
+
+15. 
+
+Se siguen los pasos del 9 al 14 para todas las entidades teniendo cuidado con poder empalmarlas correctamente al final
+
+response / request / enum / repositorio / Iservice 
