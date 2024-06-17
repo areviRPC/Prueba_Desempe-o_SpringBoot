@@ -20,7 +20,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 //15
-@Entity(name = "suvey")
+@Entity(name = "survey")
 @Data
 @Builder
 @AllArgsConstructor
