@@ -1,5 +1,7 @@
 package com.riwi.encuestas.api.dto.response;
 
+import java.util.List;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,4 +23,6 @@ public class QuestionResponse {
     private String type;
     @Schema(description = "Estado de la pregunta") 
     private boolean active;
+    @Schema(description = "Option Question in Question")
+    private List <OptionsQuestionsResponseInQuestions> optionQuestions;
 }

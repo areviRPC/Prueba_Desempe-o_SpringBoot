@@ -30,5 +30,5 @@ public class UserRequest {
 
 
     @NotBlank(message = "Este campo no puede ser nulo")
-    private String active;
+    private boolean active;
 }

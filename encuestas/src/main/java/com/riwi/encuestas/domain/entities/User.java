@@ -1,11 +1,17 @@
 package com.riwi.encuestas.domain.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +19,7 @@ import lombok.NoArgsConstructor;
 // 9
 @Entity(name = "users")
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
@@ -31,8 +38,10 @@ public class User {
     private String email;
 
     @Column(length = 100 , nullable = false)
-    private Boolean active;
+    private boolean active;
 
-    @Column(length = 100 , nullable = false)
-    private String suverys;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List <Survey> surveys = new ArrayList<>();   
 }
+

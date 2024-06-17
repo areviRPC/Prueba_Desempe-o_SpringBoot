@@ -111,3 +111,17 @@ Se siguen los pasos del 9 al 14 para todas las entidades teniendo cuidado con po
 
 response / request / enum / repositorio / Iservice 
 
+                MERGE DE MAIN CON LA RAMA OptionQuestion
+
+18. 
+
+> src/main/java/com/riwi/encuestas/domain/entities/User.java
+
+correccion de relaciones entre entidades
+
+19. 
+> src/main/java/com/riwi/encuestas/infrastructure/services/UserService.java
+
+creacion del servicio de Usuario con sus metodos implementados 
+
+
