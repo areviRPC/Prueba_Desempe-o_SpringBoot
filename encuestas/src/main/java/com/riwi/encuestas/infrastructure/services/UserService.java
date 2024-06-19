@@ -68,7 +68,7 @@ public class UserService implements IUserService{
     @Override
     public UserResponse update(UserRequest request, Integer id) {
         User user = this.find(id);
-        if (request.getName()!=null) user.setUserName(request.getName());
+        if (request.getUserName()!=null) user.setUserName(request.getUserName());
         if (request.getEmail()!=null) user.setEmail(request.getEmail());
         if (request.getPassword()!=null)user.setPassword(request.getPassword());
         if (request.getPassword()!=null)user.setPassword(request.getPassword());

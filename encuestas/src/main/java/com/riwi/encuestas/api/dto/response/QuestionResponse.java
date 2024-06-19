@@ -25,4 +25,6 @@ public class QuestionResponse {
     private boolean active;
     @Schema(description = "Option Question in Question")
     private List <OptionsQuestionsResponseInQuestions> optionQuestions;
+
+    private SurveyResponse survey;
 }

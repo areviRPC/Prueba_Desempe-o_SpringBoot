@@ -3,6 +3,12 @@ package com.riwi.encuestas.infrastructure.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.riwi.encuestas.api.dto.request.OptionQuestionRequest;
+import com.riwi.encuestas.api.dto.response.SurveyResponse;
+import com.riwi.encuestas.domain.entities.Survey;
+import com.riwi.encuestas.domain.repositories.OptionQuestionRepository;
+import com.riwi.encuestas.domain.repositories.SurveyReposiroty;
+import com.riwi.encuestas.util.exceptions.IdNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,6 +33,10 @@ public class QuestionService implements IQuestionService{
     
     @Autowired
     private final  QuestionRepository questionsRepository;
+    @Autowired
+    private final OptionQuestionRepository optionQuestionRepository;
+    @Autowired
+    private final SurveyReposiroty surveyReposiroty;
     
 
     // get all 
@@ -54,15 +64,31 @@ public class QuestionService implements IQuestionService{
     @Override
     public QuestionResponse create(QuestionRequest request) {
         Question question = this.requestToEntity(request);
-        return this.entityToResponse(this.questionsRepository.save(question));
+        Survey survey= this.surveyReposiroty.findById(request.getSurvey()).orElseThrow(()->new IdNotFoundException("survey"));
+
+        QuestionResponse response = this.entityToResponse(this.questionsRepository.save(question));
+        List<OptionQuestion> listSave =  request.getOptiones().stream().map(op->this.createOptions(op,response.getIdQuestion())).collect(Collectors.toList());
+        response.setOptionQuestions(this.optionsQuestionsResponseInQuestions(listSave));
+
+        return response;
     }
+
+    private  OptionQuestion createOptions(OptionQuestionRequest request, int id_question){
+        Question question= this.find(id_question);
+        OptionQuestion optionQuestion = new OptionQuestion();
+        BeanUtils.copyProperties(request,optionQuestion);
+        optionQuestion.setQuestion(question);
+        return   this.optionQuestionRepository.save(optionQuestion);
+
+    }
+
 
     // update
     @Override
     public QuestionResponse update(QuestionRequest request, Integer id) {
         Question question = this.find(id);
         if (request.getText()!=null)question.setText(request.getText());
-        if (request.getType()!=null)question.setType(request.getText());
+        if (request.getType()!=null)question.setType(request.getType());
 
         return this.entityToResponse(this.questionsRepository.save(question));
     }
@@ -83,7 +109,14 @@ public class QuestionService implements IQuestionService{
     }
     private QuestionResponse entityToResponse (Question question){
         QuestionResponse questionsResponse = new QuestionResponse();
+        System.out.println(question.getSurvey());
         BeanUtils.copyProperties(question, questionsResponse);
+        SurveyResponse surveyResponse = new SurveyResponse();
+        surveyResponse.setTitle(question.getSurvey().getTitle());
+        surveyResponse.setDescription(question.getSurvey().getDescription());
+        surveyResponse.setCreationDate(question.getSurvey().getCreationDate());
+        surveyResponse.setActive(question.getSurvey().getUser().isActive());
+        questionsResponse.setSurvey(surveyResponse);
         questionsResponse.setOptionQuestions(optionsQuestionsResponseInQuestions(question.getOptionQuestions()));      
         return questionsResponse;
     }

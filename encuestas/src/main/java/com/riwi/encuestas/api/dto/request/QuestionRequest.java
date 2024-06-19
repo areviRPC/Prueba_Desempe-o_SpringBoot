@@ -8,14 +8,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 // 16 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class QuestionRequest {
-    @NotNull(message = "El id de la pregunta es requerido") 
-    private int idQuestion;
     
     @Schema(
     description = "Conteniudo de la pregunta", 
@@ -29,4 +29,8 @@ public class QuestionRequest {
     @NotNull (
     message = "El estado no puede ser nulo")            
     private boolean active;
+    @NotNull(message = "opciones requeridas")
+    private List<OptionQuestionRequest> optiones;
+    @NotNull(message = "cuestionario requeridas")
+    private int survey;
 }

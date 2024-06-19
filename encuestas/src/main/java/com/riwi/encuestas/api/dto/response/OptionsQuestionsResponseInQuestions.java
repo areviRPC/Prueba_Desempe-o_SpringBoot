@@ -20,5 +20,6 @@ public class OptionsQuestionsResponseInQuestions {
     private boolean active;
     @Schema(description = "ID of the Question") // SWAGGER
     private int idQuestion;
+
     
 }

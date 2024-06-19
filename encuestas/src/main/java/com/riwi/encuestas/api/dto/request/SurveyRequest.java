@@ -17,9 +17,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SurveyRequest {
-    @NotNull(
-    message = "EL ID de la encuesta es obligatoria") 
-    private int surveyId;
 
     @Schema(
     description = "Nombre del usaurio creador de la encuesta", 

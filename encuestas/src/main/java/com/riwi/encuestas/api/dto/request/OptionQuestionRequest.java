@@ -14,10 +14,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OptionQuestionRequest {
-    @NotNull(
-    message = "El id de la pregunta es requerido")  
-    private int idOptionQuestion;
-
     @Schema(
     description = "La respuesta de la pregunta es requerida", 
     example = "respuesta")                       
@@ -29,5 +25,4 @@ public class OptionQuestionRequest {
     message = "El estado no peude ser nulo")           
     private boolean active;
 
-    private int idQuestion;
 }

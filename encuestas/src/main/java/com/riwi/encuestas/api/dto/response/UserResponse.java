@@ -15,9 +15,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserResponse {
     @Schema(description = "ID of the user")         // SWAGGER
-    private long idUser;
+    private int id;
     @Schema(description = "name of the user")       // SWAGGER
-    private String name;
+    private String userName;
     @Schema(description = "Email of the user")      // SWAGGER
     private String email;
     @Schema(description = "State of the user")      // SWAGGER

@@ -4,13 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.riwi.encuestas.api.dto.request.UserRequest;
 import com.riwi.encuestas.api.dto.response.UserResponse;
@@ -20,7 +14,6 @@ import com.riwi.encuestas.util.exceptions.IdNotFoundException;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -96,7 +89,8 @@ public class UserController {
         @ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR")
     })
     @PostMapping(path = "/create")
-    public ResponseEntity<UserResponse> create(@Validated @RequestBody UserRequest request) {
+    public ResponseEntity<UserResponse> create( @Validated @RequestBody UserRequest request) {
+        System.out.println(request);
         return ResponseEntity.ok(this.iUserService.create(request));
     }
 
@@ -114,7 +108,7 @@ public class UserController {
         @ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR")
     })
     @PutMapping(path = "/{user_id}")
-    public ResponseEntity<UserResponse> update(@Validated @RequestBody UserRequest request, 
+    public ResponseEntity<UserResponse> update(@Validated @RequestBody UserRequest request,
         @Parameter(description = "User ID",example = "1") // SWAGGER
         @PathVariable Integer user_id) {
         return ResponseEntity.ok(this.iUserService.update(request, user_id));
